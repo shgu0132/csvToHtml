@@ -1,4 +1,8 @@
 <?php
+## source: https://stackoverflow.com/questions/518795/dynamically-display-a-csv-file-as-an-html-table-on-a-web-page
+## source: https://www.mrc-productivity.com/techblog/?p=688
+## source: https://jquery.com/download/
+## source: https://www.php.net/manual/en/function.fgetcsv.php
 echo "<html><head><style>\n\n";
 echo "table {border: 1px solid black; padding: 0;}";
 echo "th {background-color: #3f73c1; color: white; border: 1px solid black; padding: 2px;}";
