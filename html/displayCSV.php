@@ -12,15 +12,16 @@ echo "</style></head>";
 echo "<body>\n";
 echo "<table border=1 cellspacing=0>\n\n";
 $f = fopen("so-csv.csv", "r");
-$count = 1;
+$row = 1;
 while (($line = fgetcsv($f)) !== false) {
-  if (( $count == 1 )) {
+  $num = count($line);
+  if (( $row == 1 )) {
 	  echo "<tr>";
 	  foreach ($line as $cell) {
 		  echo "<th>" . htmlspecialchars($cell) . "</th>";
 	  }
   } else {
-	  $oddEven = $count % 2;
+	  $oddEven = $row % 2;
 	  if (( $oddEven == 0 )) {
 		  $class = "one";
 	  }
@@ -28,12 +29,22 @@ while (($line = fgetcsv($f)) !== false) {
 		  $class = "two";
 	  }
         echo "<tr class=$class>";
-        foreach ($line as $cell) {
-                echo "<td>" . htmlspecialchars($cell) . "</td>";
+	  for ($c=0; $c < $num; $c++) {
+		if ($c == 1) {
+			if (($line[$c] > 100)) {
+          	          echo "<td class=green>" . htmlspecialchars($line[$c]) . "</td>";
+			}
+			else {
+			  echo "<td class=red>" .htmlspecialchars($line[$c]) . "</td>";
+			}
+		}
+		else {
+			echo "<td>" . htmlspecialchars($line[$c]) . "</td>";
+		}
         }
 	echo "</tr>\n";
   }
-	$count = $count + 1;
+	$row = $row + 1;
 }
 fclose($f);
 echo "\n</table></body></html>";
