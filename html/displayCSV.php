@@ -3,7 +3,11 @@ echo "<html><head><style>\n\n";
 echo "table {border: 1px solid black; padding: 0;}";
 echo "th {background-color: #3f73c1; color: white; border: 1px solid black; padding: 2px;}";
 echo "tr {background-color: #dbdbdb;}";
+echo "tr.one {background-color: #dbdbdb;}";
+echo "tr.two {background-color: #efefef;}";
 echo "td {padding: 4px; margin: 0;}";
+echo "td.red {background-color: red;}";
+echo "td.green {background-color: green;}";
 echo "</style></head>";
 echo "<body>\n";
 echo "<table border=1 cellspacing=0>\n\n";
@@ -16,7 +20,14 @@ while (($line = fgetcsv($f)) !== false) {
 		  echo "<th>" . htmlspecialchars($cell) . "</th>";
 	  }
   } else {
-        echo "<tr class=$count>";
+	  $oddEven = $count % 2;
+	  if (( $oddEven == 0 )) {
+		  $class = "one";
+	  }
+	  else {
+		  $class = "two";
+	  }
+        echo "<tr class=$class>";
         foreach ($line as $cell) {
                 echo "<td>" . htmlspecialchars($cell) . "</td>";
         }
