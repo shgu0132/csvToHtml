@@ -3,6 +3,7 @@
 ## source: https://www.mrc-productivity.com/techblog/?p=688
 ## source: https://jquery.com/download/
 ## source: https://www.php.net/manual/en/function.fgetcsv.php
+## source: https://people.sc.fsu.edu/~jburkardt/data/csv/cities.csv
 echo "<html><head><style>\n\n";
 echo "table {border: 1px solid black; padding: 0;}";
 echo "th {background-color: #3f73c1; color: white; border: 1px solid black; padding: 2px;}";
@@ -17,6 +18,8 @@ echo "<body>\n";
 echo "<table border=1 cellspacing=0>\n\n";
 $f = fopen("so-csv.csv", "r");
 $row = 1;
+$CELLTOFORMAT=2;
+$VALUE=25;
 while (($line = fgetcsv($f)) !== false) {
   $num = count($line);
   if (( $row == 1 )) {
@@ -34,8 +37,8 @@ while (($line = fgetcsv($f)) !== false) {
 	  }
         echo "<tr class=$class>";
 	  for ($c=0; $c < $num; $c++) {
-		if ($c == 1) {
-			if (($line[$c] > 100)) {
+		if ($c == $CELLTOFORMAT) {
+			if (($line[$c] > $VALUE)) {
           	          echo "<td class=green>" . htmlspecialchars($line[$c]) . "</td>";
 			}
 			else {
